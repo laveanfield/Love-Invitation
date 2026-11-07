@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+    <title>Journey to Find "WE": A Little Journey, Just For Us</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond (Editorial Serif), Plus Jakarta Sans (Clean Sans), Caveat (Handwritten Polaroid captions) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF7F2',
+                        paper: '#F3EDE2',
+                        terracotta: '#C07A63',
+                        terracottaDark: '#A35E47',
+                        sage: '#7E8F7C',
+                        sageLight: '#E6ECE5',
+                        charcoal: '#2C2623',
+                        muted: '#6E655F',
+                        warmBorder: '#E5DEC9'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive']
+                    },
+                    boxShadow: {
+                        'polaroid': '0 10px 30px -5px rgba(44, 38, 35, 0.08), 0 4px 12px -2px rgba(44, 38, 35, 0.04)',
+                        'card': '0 14px 34px -8px rgba(44, 38, 35, 0.07)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hiệu ứng nền giấy & Film Grain nhẹ nhàng */
+        body {
+            background-color: #FAF7F2;
+            color: #2C2623;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .film-grain {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Băng dính giấy Washi Tape trang trí khung ảnh Polaroid */
+        .washi-tape {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 110px;
+            height: 28px;
+            background-color: rgba(229, 222, 201, 0.72);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            z-index: 10;
+            border-left: 2px dashed rgba(255,255,255,0.6);
+            border-right: 2px dashed rgba(255,255,255,0.6);
+        }
+
+        /* Hiệu ứng chuyển trang câu hỏi mượt mà */
+        .prompt-transition {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .prompt-fade-out {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5CBB8;
+            border-radius: 9999px;
+        }
+
+        /* Polaroid nghiêng nhẹ tự nhiên */
+        .polaroid-tilt-left {
+            transform: rotate(-1.2deg);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .polaroid-tilt-left:hover {
+            transform: rotate(0deg) translateY(-4px);
+        }
+        .polaroid-tilt-right {
+            transform: rotate(1.2deg);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .polaroid-tilt-right:hover {
+            transform: rotate(0deg) translateY(-4px);
+        }
+
+        /* Cuộn phim điện ảnh */
+        .film-perforation {
+            background-image: radial-gradient(circle, #FAF7F2 35%, transparent 36%);
+            background-size: 20px 14px;
+            background-repeat: repeat-x;
+        }
+
+        body {
+            background: radial-gradient(60rem 40rem at 8% -8%, #FFE1D0 0, transparent 60%),
+                        radial-gradient(50rem 40rem at 100% 12%, #F9D6DE 0, transparent 55%),
+                        radial-gradient(55rem 40rem at 45% 112%, #DCE8D6 0, transparent 60%),
+                        #FAF7F2;
+            background-attachment: fixed;
+        }
+
+        #opening h1 .italic {
+            background: linear-gradient(100deg, #C07A63, #E0728A 55%, #E9A23B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .9rem 1.7rem;
+            border-radius: 999px;
+            color: #fff;
+            font-weight: 600;
+            background: linear-gradient(100deg, #C07A63, #E0728A 60%, #E9A23B);
+            box-shadow: 0 12px 28px -10px rgba(224, 114, 138, .75);
+            transition: transform .25s;
+        }
+        .cta:hover { transform: translateY(-2px) scale(1.03); }
+        .cta:disabled { opacity: .55; transform: none; }
+        .cta.pulse { animation: pulse 2.6s ease-out infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(224, 114, 138, .5); }
+            70%, 100% { box-shadow: 0 0 0 22px rgba(224, 114, 138, 0); }
+        }
+
+        main .rounded-2xl.shadow-sm { transition: transform .35s, box-shadow .35s; }
+        main .rounded-2xl.shadow-sm:hover {
+            transform: translateY(-4px) rotate(-.3deg);
+            box-shadow: 0 20px 40px -14px rgba(192, 122, 99, .35);
+        }
+
+        article { position: relative; }
+        article[id^=chapter]::before {
+            position: absolute;
+            right: 0;
+            top: -34px;
+            font: 600 7.5rem/1 'Cormorant Garamond', serif;
+            color: rgba(192, 122, 99, .11);
+            pointer-events: none;
+        }
+        #chapter-1::before { content: "01"; }
+        #chapter-2::before { content: "02"; }
+        #chapter-3::before { content: "03"; }
+        #chapter-4::before { content: "04"; }
+        #chapter-5::before { content: "05"; }
+
+        .rv { opacity: 0; transform: translateY(26px); transition: opacity .9s, transform .9s; }
+        .rv.in { opacity: 1; transform: none; }
+
+        /* Khung ảnh .slot có nút Upload trực tiếp */
+        .slot {
+            position: relative;
+            overflow: hidden;
+            border-radius: .75rem;
+            width: 100%;
+            background: linear-gradient(135deg, #FBE4D8, #F3EDE2 55%, #E1EADF);
+            cursor: pointer;
+        }
+        .slot img, .slot video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s;
+        }
+        .slot:hover img { transform: scale(1.04); }
+
+        .slot-empty {
+            position: absolute;
+            inset: 9px;
+            border: 1.5px dashed rgba(192, 122, 99, .55);
+            border-radius: .6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            color: #C07A63;
+            font: 600 1.15rem Caveat, cursive;
+            text-align: center;
+            padding: .5rem;
+            transition: background-color .2s;
+        }
+        .slot:hover .slot-empty {
+            background-color: rgba(255, 255, 255, 0.45);
+        }
+
+        .slot-upload-btn {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            z-index: 15;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: rgba(250, 247, 242, 0.92);
+            color: #2C2623;
+            border: 1px solid #E5DEC9;
+            box-shadow: 0 4px 12px rgba(44, 38, 35, 0.14);
+            backdrop-filter: blur(4px);
+            transition: all .2s;
+        }
+        .slot-upload-btn:hover {
+            background: #C07A63;
+            color: #fff;
+            border-color: #C07A63;
+        }
+
+        .slot-thumb { aspect-ratio: 16/10; flex: none; }
+        @media(min-width: 640px) { .slot-thumb { width: 11rem; } }
+
+        .ans {
+            width: 100%;
+            margin-top: .9rem;
+            padding: .2rem .9rem;
+            border-radius: 1rem;
+            border: 1px solid #E5DEC9;
+            outline: none;
+            resize: none;
+            font: 500 1.3rem/32px Caveat, cursive;
+            color: #2C2623;
+            background: repeating-linear-gradient(transparent 0 31px, #EADFCB 31px 32px), #fffdf9;
+        }
+        .ans:focus {
+            border-color: #C07A63;
+            box-shadow: 0 0 0 3px rgba(192, 122, 99, .15);
+        }
+
+        .ticket {
+            position: relative;
+            background: #fff;
+            border: 1.5px dashed #D9B9A8;
+            border-radius: 1.5rem;
+            padding: 2rem 1.25rem;
+            box-shadow: 0 16px 40px -18px rgba(192, 122, 99, .4);
+        }
+        .chip {
+            padding: .45rem .95rem;
+            border-radius: 999px;
+            background: #FFF4EC;
+            border: 1px solid #F0D5C6;
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+        }
+        .send-card {
+            background: linear-gradient(160deg, #fff, #FFF1EA);
+            border: 1px solid #F0D5C6;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 16px 40px -18px rgba(224, 114, 138, .45);
+        }
+
+        .mplayer {
+            position: fixed;
+            left: 12px;
+            bottom: 12px;
+            z-index: 45;
+            display: flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .4rem .6rem .4rem .4rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .85);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E5DEC9;
+            box-shadow: 0 14px 34px -10px rgba(44, 38, 35, .3);
+            max-width: calc(100vw - 24px);
+        }
+        .vinyl {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            flex: none;
+            background: radial-gradient(circle, #E0728A 0 14%, #2C2623 15% 38%, #40362f 39% 41%, #2C2623 42% 62%, #40362f 63% 65%, #2C2623 66%);
+            animation: spin 5s linear infinite paused;
+        }
+        .playing .vinyl { animation-play-state: running; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .mp-meta { display: flex; flex-direction: column; min-width: 0; width: 7.5rem; line-height: 1.25; }
+        .mp-meta b { font-size: .78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mp-meta span { font-size: .66rem; color: #6E655F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mp-bar { display: block; height: 3px; border-radius: 3px; background: #E5DEC9; margin-top: 4px; }
+        .mp-bar u { display: block; height: 100%; width: 0; border-radius: 3px; background: #C07A63; }
+        .mplayer button { width: 30px; height: 30px; border-radius: 50%; font-size: .8rem; }
+        .mplayer .pp { background: #C07A63; color: #fff; }
+
+        .petals { position: fixed; inset: 0; pointer-events: none; z-index: 35; overflow: hidden; }
+        .petal, .confetti { position: absolute; top: -6vh; animation: fall linear infinite; opacity: 0; }
+        .confetti { position: fixed; z-index: 70; animation: fall 3s ease-in forwards; }
+        @keyframes fall { 10% { opacity: .7; } to { transform: translate(40px, 108vh) rotate(360deg); opacity: 0; } }
+
+        @media(prefers-reduced-motion: reduce) {
+            .petal, .vinyl, .cta.pulse { animation: none !important; }
+            .rv { opacity: 1; transform: none; transition: none; }
+        }
+    </style>
+</head>
+<body class="selection:bg-terracotta/20 selection:text-charcoal">
+
+    <!-- Lớp phủ Film Grain tạo cảm giác hoài niệm -->
+    <div class="film-grain"></div>
+
+    <!-- Đầu đĩa than phát nhạc nổi góc dưới -->
+    <div id="mplayer" class="mplayer">
+        <div class="vinyl"></div>
+        <div class="mp-meta">
+            <b id="mp-title"></b>
+            <span id="mp-artist"></span>
+            <i class="mp-bar"><u id="mp-prog"></u></i>
+        </div>
+        <button onclick="step(-1)" aria-label="Bài trước">‹</button>
+        <button id="mp-pp" class="pp" onclick="toggleMusic()" aria-label="Phát / dừng">▶</button>
+        <button onclick="step(1)" aria-label="Bài sau">›</button>
+    </div>
+
+    <!-- Thanh điều hướng nổi tinh tế (Đã sửa lỗi nút Hành trình của mình) -->
+    <header class="fixed top-0 left-0 right-0 z-30 bg-cream/85 backdrop-blur-md border-b border-warmBorder/60 transition-all">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#opening" class="flex items-center gap-2 group">
+                <span class="w-2.5 h-2.5 rounded-full bg-terracotta group-hover:scale-125 transition-transform"></span>
+                <span class="font-serif italic font-semibold text-lg tracking-wide text-charcoal">Journey to Find "WE"</span>
+            </a>
+
+            <!-- Nút điều hướng nhanh -->
+            <div class="flex items-center gap-1.5 sm:gap-2.5">
+                <a href="#journey-map" class="text-xs sm:text-sm font-medium text-muted hover:text-charcoal px-2.5 py-1.5 rounded-full hover:bg-paper transition">
+                    Lịch trình
+                </a>
+                <a href="#memories" class="text-xs sm:text-sm font-medium text-terracotta hover:text-terracottaDark bg-terracotta/10 px-3 py-1.5 rounded-full hover:bg-terracotta/20 transition flex items-center gap-1">
+                    <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+                    <span>Hành trình của mình</span>
+                </a>
+                <a href="#closing" class="text-xs sm:text-sm font-medium bg-terracotta text-white px-3 py-1.5 rounded-full hover:bg-terracottaDark transition shadow-sm hidden sm:inline-flex items-center gap-1">
+                    <span>Gửi lời nhắn</span>
+                    <span>💌</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         1. OPENING — A LITTLE INVITATION (HERO)
+    =========================================== -->
+    <section id="opening" class="pt-24 pb-16 sm:pt-32 sm:pb-24 px-4 max-w-4xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-paper border border-warmBorder text-terracotta text-xs tracking-widest uppercase mb-6">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>A little journey, just for us</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-semibold text-charcoal leading-[1.1] tracking-tight mb-4">
+                Journey to Find <span class="italic text-terracotta font-normal">"WE"</span>
+            </h1>
+
+            <p class="font-serif italic text-xl sm:text-2xl text-muted mb-8">
+                Not a journey back to the past, but a journey to discover us again.
+            </p>
+
+            <!-- Thông điệp chủ đạo -->
+            <div class="bg-paper/80 border border-warmBorder rounded-2xl p-6 sm:p-8 mb-10 shadow-sm relative">
+                <i data-lucide="quote" class="w-8 h-8 text-terracotta/25 absolute top-4 left-4"></i>
+                <blockquote class="font-serif text-lg sm:text-xl leading-relaxed text-charcoal/90 italic relative z-10">
+                    "Maybe we don't need to go back to who we were.<br class="hidden sm:inline">
+                    Maybe we just need to discover who we are now, and whether we still want to become something beautiful together.<br><br>
+                    <span class="not-italic font-medium text-terracottaDark text-base sm:text-lg">This is not about bringing back the old WE. This is about finding our WE again.</span>"
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="text-center mb-14">
+            <button onclick="acceptInvite()" class="cta pulse">Nhận lời mời <span>♥</span></button>
+        </div>
+
+        <!-- KHUNG ẢNH / VIDEO MỞ ĐẦU (HERO POLAROID) -->
+        <div class="max-w-lg mx-auto mb-12">
+            <div class="bg-white p-4 sm:p-5 pb-7 rounded-2xl shadow-polaroid border border-warmBorder/80 relative polaroid-tilt-left">
+                <div class="washi-tape"></div>
+                
+                <!-- Khung ảnh bìa cho phép chạm để tải ảnh lên -->
+                <div class="slot" data-slot-id="hero" style="aspect-ratio:4/3" data-src="figures/us.jpg" data-name="Ảnh bìa đôi mình"></div>
+
+                <!-- Chú thích viết tay có thể chỉnh sửa trực tiếp -->
+                <div class="mt-4 text-center">
+                    <p contenteditable="true" spellcheck="false" class="font-hand text-2xl sm:text-3xl text-charcoal outline-none focus:bg-paper/60 rounded px-2 inline-block">
+                        Một ngày dành riêng cho tụi mình ở Sài Gòn
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lời dẫn Opening & Gợi ý khởi động -->
+        <div class="grid md:grid-cols-5 gap-6 items-stretch">
+            <div class="md:col-span-3 bg-white/80 border border-warmBorder rounded-2xl p-6 sm:p-8 shadow-card flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 text-terracotta text-xs font-semibold uppercase tracking-wider mb-3">
+                        <i data-lucide="mail-open" class="w-4 h-4"></i>
+                        <span>Opening — Lời mời nhỏ</span>
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-charcoal mb-4">
+                        Hôm nay không cần phải có câu trả lời cho tất cả mọi chuyện
+                    </h2>
+                    <div class="space-y-3 text-sm sm:text-base text-muted leading-relaxed">
+                        <p>
+                            Có lẽ đôi khi chúng ta bận rộn với cuộc sống, với công việc và những điều phải lo nghĩ đến mức quên mất việc dành thời gian thật sự cho nhau.
+                        </p>
+                        <p>
+                            Chúng ta vẫn có thể gặp nhau, vẫn trò chuyện, vẫn ở cạnh nhau, nhưng có thể đã lâu rồi mình chưa thật sự dừng lại để khám phá xem người bên cạnh đang nghĩ gì, cảm thấy thế nào và đang trở thành một người như thế nào.
+                        </p>
+                        <p class="text-charcoal font-medium">
+                            Mình chỉ muốn cùng nhau đi qua một hành trình nhỏ, nhớ lại những điều đã đưa chúng ta đến với nhau, hiểu hơn về con người của nhau ở hiện tại, và nếu cả hai cùng muốn, tưởng tượng xem chúng ta có thể xây dựng điều gì tiếp theo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khởi động buổi sáng & Chọn bài nhạc -->
+            <div class="md:col-span-2 bg-paper border border-warmBorder rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-sage flex items-center gap-1.5">
+                            <i data-lucide="music" class="w-4 h-4"></i>
+                            Nhịp cảm xúc mở đầu
+                        </span>
+                    </div>
+
+                    <h3 class="font-serif text-xl font-semibold text-charcoal mb-3">
+                        3 điều nhỏ trước khi lăn bánh
+                    </h3>
+
+                    <ul class="space-y-3 text-sm text-charcoal/90 mb-5">
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-terracotta/15 text-terracotta flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+                            <span>Bắt đầu bằng bữa sáng ấm bụng tại <strong>4A/33 Nguyễn Văn Thương</strong>.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-terracotta/15 text-terracotta flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+                            <span>Cùng nghe <strong>một bài nhạc mở đầu</strong> cho chuyến đi hôm nay.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-terracotta/15 text-terracotta flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+                            <span>Mỗi người nói <strong>một điều mình mong chờ</strong> ở ngày hôm nay.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         2. JOURNEY MAP — BẢN ĐỒ HÀNH TRÌNH TRONG NGÀY
+    =========================================== -->
+    <section id="journey-map" class="py-14 bg-paper/70 border-y border-warmBorder px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase tracking-widest text-terracotta font-semibold">Our Route Across Saigon</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-charcoal mt-1">Bản Đồ Hành Trình 5 Chặng</h2>
+            </div>
+
+            <!-- Các bước trên bản đồ -->
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                <a href="#chapter-1" class="group bg-cream hover:bg-white p-4 rounded-2xl border border-warmBorder transition shadow-sm hover:shadow-md flex sm:flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">Sáng • Chặng 1</span>
+                        <i data-lucide="coffee" class="w-4 h-4 text-muted group-hover:text-terracotta transition"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-semibold text-lg text-charcoal">The Beginning</h3>
+                        <p class="text-xs text-muted mt-0.5 line-clamp-2">Ăn sáng Nguyễn Văn Thương & Cà phê Cú Trên Cây</p>
+                    </div>
+                </a>
+
+                <a href="#chapter-2" class="group bg-cream hover:bg-white p-4 rounded-2xl border border-warmBorder transition shadow-sm hover:shadow-md flex sm:flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">Trưa • Chặng 2</span>
+                        <i data-lucide="palette" class="w-4 h-4 text-muted group-hover:text-terracotta transition"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-semibold text-lg text-charcoal">The Little Things</h3>
+                        <p class="text-xs text-muted mt-0.5 line-clamp-2">Mì tương đen Bảo Bối & Chọn: Meta Show / Tía Tô Workshop</p>
+                    </div>
+                </a>
+
+                <a href="#chapter-3" class="group bg-cream hover:bg-white p-4 rounded-2xl border border-warmBorder transition shadow-sm hover:shadow-md flex sm:flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-sage bg-sageLight px-2.5 py-1 rounded-full">Chiều • Chặng 3</span>
+                        <i data-lucide="heart-handshake" class="w-4 h-4 text-muted group-hover:text-sage transition"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-semibold text-lg text-charcoal">The Unspoken</h3>
+                        <p class="text-xs text-muted mt-0.5 line-clamp-2">Khoảng lặng yên tĩnh để lắng nghe những điều chưa nói</p>
+                    </div>
+                </a>
+
+                <a href="#chapter-4" class="group bg-cream hover:bg-white p-4 rounded-2xl border border-warmBorder transition shadow-sm hover:shadow-md flex sm:flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">Tối • Chặng 4</span>
+                        <i data-lucide="utensils" class="w-4 h-4 text-muted group-hover:text-terracotta transition"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-semibold text-lg text-charcoal">The Meaning of Us</h3>
+                        <p class="text-xs text-muted mt-0.5 line-clamp-2">Chọn bữa tối: Há cảo Phánh Q.5 hoặc Matsuya Bình Thạnh</p>
+                    </div>
+                </a>
+
+                <a href="#chapter-5" class="group bg-cream hover:bg-white p-4 rounded-2xl border border-warmBorder transition shadow-sm hover:shadow-md flex sm:flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold uppercase tracking-wider text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full">Đêm • Chặng 5</span>
+                        <i data-lucide="camera" class="w-4 h-4 text-muted group-hover:text-terracotta transition"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-semibold text-lg text-charcoal">The Next Chapter</h3>
+                        <p class="text-xs text-muted mt-0.5 line-clamp-2">Dạo bộ Landmark 81 hoặc chụp Photobooth tại Parisbooth</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         3. CÁC CHẶNG HÀNH TRÌNH CHI TIẾT (CHAPTER 1 -> 5)
+    =========================================== -->
+    <main class="max-w-4xl mx-auto px-4 py-16 space-y-24">
+
+        <!-- ------------------------------------------
+             CHAPTER 1 — THE BEGINNING (BUỔI SÁNG)
+        ------------------------------------------- -->
+        <article id="chapter-1" class="scroll-mt-20">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-terracotta bg-terracotta/10 px-3.5 py-1.5 rounded-full">
+                    <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+                    Chapter 01 • Buổi Sáng
+                </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-charcoal">
+                The Beginning: <span class="italic font-normal text-terracotta">Every story has a beginning</span>
+            </h2>
+            <p class="text-muted mt-2 text-sm sm:text-base max-w-2xl">
+                Nhìn lại những ngày đầu không phải để so sánh hiện tại với quá khứ, mà để nhớ rằng mỗi người từng nhìn thấy điều gì đẹp đẽ ở đối phương.
+            </p>
+
+            <!-- Lộ trình địa điểm buổi sáng -->
+            <div class="grid sm:grid-cols-2 gap-4 my-8">
+                <!-- Điểm dừng 1 -->
+                <div class="bg-white border border-warmBorder rounded-2xl p-5 shadow-sm relative overflow-hidden">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0">
+                            <i data-lucide="soup" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider bg-paper px-2.5 py-1 rounded-full text-muted">Điểm dừng mở màn</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-charcoal mt-4">Ăn sáng nạp năng lượng</h3>
+                    <p class="text-xs font-medium text-terracotta mt-1 flex items-center gap-1">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                        4A/33 Nguyễn Văn Thương, Bình Thạnh
+                    </p>
+                    <div class="slot" data-slot-id="nguyen-van-thuong" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/nguyen-van-thuong.jpg" data-name="Ảnh ăn sáng Nguyễn Văn Thương"></div>
+                    <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                        Bắt đầu ngày mới nhẹ nhàng bên nhau, thưởng thức bữa sáng ấm nóng và chia sẻ một điều nhỏ mà mỗi đứa mong chờ ở chuyến đi hôm nay.
+                    </p>
+                </div>
+
+                <!-- Điểm dừng 2 -->
+                <div class="bg-white border border-warmBorder rounded-2xl p-5 shadow-sm relative overflow-hidden">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-sageLight text-sage flex items-center justify-center shrink-0">
+                            <i data-lucide="trees" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider bg-sageLight/70 px-2.5 py-1 rounded-full text-sage">Trạm dừng tâm tình</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-charcoal mt-4">Cà phê Cú Trên Cây</h3>
+                    <p class="text-xs font-medium text-sage mt-1 flex items-center gap-1">
+                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                        262 Ung Văn Khiêm, Bình Thạnh
+                    </p>
+                    <div class="slot" data-slot-id="cu-tren-cay" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/cu-tren-cay.jpg" data-name="Ảnh Cú Trên Cây"></div>
+                    <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                        Không gian gỗ và cây xanh chill chill, thật hợp để ngồi nhâm nhi ly nước, xem lại vài tấm ảnh cũ và nhớ về những ấn tượng đầu tiên.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Khu vực Khung Ảnh/Video + Thẻ câu hỏi gợi mở Chapter 1 -->
+            <div class="grid md:grid-cols-12 gap-6 items-center">
+                <!-- Khung ảnh/video Chapter 1 -->
+                <div class="md:col-span-5">
+                    <div class="bg-white p-3.5 pb-6 rounded-2xl shadow-polaroid border border-warmBorder relative polaroid-tilt-right">
+                        <div class="washi-tape"></div>
+                        <div class="slot" data-slot-id="ch1" style="aspect-ratio:4/5" data-src="images/ch1.jpg" data-name="Khoảnh khắc buổi sáng"></div>
+                        <p contenteditable="true" spellcheck="false" class="font-hand text-2xl text-center text-charcoal mt-3 outline-none inline-flex items-center gap-2">
+                            Buổi sáng chill chill ở Cú Trên Cây
+
+                            <img src="figures/coffee.png"
+                                class="w-6 h-6"
+                                alt="Coffee">
+
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bộ thẻ câu hỏi gợi mở Chapter 1 -->
+                <div class="md:col-span-7 bg-paper/90 border border-warmBorder rounded-2xl p-6 sm:p-8 shadow-card">
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-terracotta flex items-center gap-1.5">
+                            <i data-lucide="message-circle-heart" class="w-4 h-4"></i>
+                            Câu hỏi gợi mở • Chặng 1
+                        </span>
+                        <span id="counter-ch1" class="text-xs text-muted font-mono">1 / 5</span>
+                    </div>
+
+                    <div class="min-h-[110px] flex items-center">
+                        <p id="prompt-text-ch1" class="font-serif text-2xl sm:text-3xl text-charcoal leading-snug prompt-transition">
+                            "Ấn tượng đầu tiên của em về anh là gì?"
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-3 mt-3 border-t border-warmBorder">
+                        <button onclick="prevPrompt('ch1')" class="text-xs sm:text-sm text-muted hover:text-charcoal flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-white transition">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            Câu trước
+                        </button>
+                        <button onclick="nextPrompt('ch1')" class="text-xs sm:text-sm font-medium bg-terracotta text-white px-4 py-2.5 rounded-xl hover:bg-terracottaDark transition flex items-center gap-1.5 shadow-sm">
+                            <span>Câu khác</span>
+                            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Danh sách các câu đã trả lời của Chặng 1 -->
+                    <div id="answered-list-ch1" class="mt-4 space-y-2 hidden"></div>
+                </div>
+            </div>
+
+            <!-- Takeaway Chặng 1 -->
+            <div class="mt-6 bg-white/60 border-l-4 border-terracotta px-5 py-3.5 rounded-r-xl">
+                <p class="font-serif italic text-base sm:text-lg text-charcoal">
+                    <strong>Takeaway:</strong> "Before there was 'WE', there were two people who found something special in each other."
+                </p>
+            </div>
+        </article>
+
+        <!-- ------------------------------------------
+             CHAPTER 2 — THE LITTLE THINGS (BUỔI TRƯA & ĐẦU GIỜ CHIỀU)
+        ------------------------------------------- -->
+        <article id="chapter-2" class="scroll-mt-20">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-terracotta bg-terracotta/10 px-3.5 py-1.5 rounded-full">
+                    <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+                    Chapter 02 • Buổi Trưa & Đầu Giờ Chiều
+                </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-charcoal">
+                The Little Things: <span class="italic font-normal text-terracotta">Tell me about your world</span>
+            </h2>
+            <p class="text-muted mt-2 text-sm sm:text-base max-w-2xl">
+                Một người không đứng yên mãi ở phiên bản mà ta từng biết. Yêu một người cũng là tiếp tục tò mò về thế giới và con người hiện tại của họ.
+            </p>
+
+            <!-- Điểm dừng ăn trưa: Mì tương đen Bảo Bối -->
+            <div class="mt-8 bg-white border border-warmBorder rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="slot slot-thumb" data-slot-id="bao-boi" data-src="figures/blue-dragon.jpg" data-name="Ảnh Mì Bảo Bối"></div>
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0">
+                        <i data-lucide="utensils-crossed" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-terracotta">Trạm nạp năng lượng buổi trưa</span>
+                        <h3 class="font-serif text-2xl font-semibold text-charcoal mt-0.5">Mì tương đen Blue Dragon</h3>
+                        <p class="text-xs sm:text-sm text-muted mt-1 flex items-center gap-1.5">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-terracotta shrink-0"></i>
+                            <span>23 Thái Thuân, Quận 2</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="text-xs text-muted bg-paper px-4 py-2.5 rounded-xl border border-warmBorder/80 sm:max-w-xs">
+                    Cùng thưởng thức tô mì tương đen ngon lành và bàn xem buổi chiều tụi mình thích đi đâu hơn nhé!
+                </div>
+            </div>
+
+            <!-- BỘ CHỌN TƯƠNG TÁC BUỔI CHIỀU: META SHOW HOẶC TÍA TÔ ARTBOOKS -->
+            <div class="mt-6 bg-paper/70 border border-warmBorder rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-sage">Hoạt động tự chọn sau bữa trưa</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-semibold text-charcoal">
+                            Chiều nay tụi mình muốn trải nghiệm điều gì cùng nhau?
+                        </h3>
+                    </div>
+                    <span id="badge-choice-afternoon" class="text-xs bg-white px-3 py-1 rounded-full border border-warmBorder text-muted">
+                        Em chọn nhé ♡
+                    </span>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Option A: Meta Show -->
+                    <div id="card-afternoon-a" onclick="selectItineraryOption('afternoon', 'a', 'Xem Meta Show tại Gigamall')" class="cursor-pointer bg-white border-2 border-warmBorder hover:border-terracotta/60 rounded-2xl p-5 transition-all relative group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-terracotta/10 text-terracotta">Lựa chọn A • Thị giác & Mới lạ</span>
+                            <div id="check-afternoon-a" class="w-6 h-6 rounded-full border border-warmBorder flex items-center justify-center text-white transition">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-serif text-xl font-semibold text-charcoal">Đi xem Meta Show</h4>
+                        <p class="text-xs font-medium text-terracotta mt-1 flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                            TTTM Gigamall (Mở cửa 10:00 – 22:00)
+                        </p>
+                        <div class="slot" data-slot-id="meta-show" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/metashow.jpg" data-name="Ảnh Meta Show"></div>
+                        <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                            Đắm mình vào không gian nghệ thuật ánh sáng và công nghệ đa giác quan, tha hồ khám phá và chụp những khung hình thật nghệ cùng nhau.
+                        </p>
+                    </div>
+
+                    <!-- Option B: Tía Tô Artbooks -->
+                    <div id="card-afternoon-b" onclick="selectItineraryOption('afternoon', 'b', 'Làm Workshop tại Tía Tô Artbooks (14 Tôn Thất Đạm, Q.1)')" class="cursor-pointer bg-white border-2 border-warmBorder hover:border-terracotta/60 rounded-2xl p-5 transition-all relative group">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-sageLight text-sage">Lựa chọn B • Thủ công & Chậm rãi</span>
+                            <div id="check-afternoon-b" class="w-6 h-6 rounded-full border border-warmBorder flex items-center justify-center text-white transition">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-serif text-xl font-semibold text-charcoal">Làm Workshop tại Tía Tô Artbooks</h4>
+                        <p class="text-xs font-medium text-sage mt-1 flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                            Chung cư 14 Tôn Thất Đạm, Quận 1
+                        </p>
+                        <div class="slot" data-slot-id="tia-to" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/tia-to.jpg" data-name="Ảnh Tía Tô Artbooks"></div>
+                        <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                            Ghé khu chung cư cổ mang đậm hơi thở Sài Gòn, cùng ngồi tỉ mẩn làm một món đồ thủ công và trò chuyện trong không gian nghệ thuật ấm cúng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khu vực Câu hỏi gợi mở + Khung Ảnh/Video Chapter 2 -->
+            <div class="grid md:grid-cols-12 gap-6 items-center mt-8">
+                <!-- Bộ thẻ câu hỏi gợi mở Chapter 2 -->
+                <div class="md:col-span-7 bg-paper/90 border border-warmBorder rounded-2xl p-6 sm:p-8 shadow-card order-2 md:order-1">
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-terracotta flex items-center gap-1.5">
+                            <i data-lucide="message-circle-heart" class="w-4 h-4"></i>
+                            Câu hỏi gợi mở • Chặng 2
+                        </span>
+                        <span id="counter-ch2" class="text-xs text-muted font-mono">1 / 6</span>
+                    </div>
+
+                    <div class="min-h-[110px] flex items-center">
+                        <p id="prompt-text-ch2" class="font-serif text-2xl sm:text-3xl text-charcoal leading-snug prompt-transition">
+                            "Dạo gần đây có điều gì khiến em cảm thấy hào hứng nhất?"
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-3 mt-3 border-t border-warmBorder">
+                        <button onclick="prevPrompt('ch2')" class="text-xs sm:text-sm text-muted hover:text-charcoal flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-white transition">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            Câu trước
+                        </button>
+                        <button onclick="nextPrompt('ch2')" class="text-xs sm:text-sm font-medium bg-terracotta text-white px-4 py-2.5 rounded-xl hover:bg-terracottaDark transition flex items-center gap-1.5 shadow-sm">
+                            <span>Câu khác</span>
+                            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div id="answered-list-ch2" class="mt-4 space-y-2 hidden"></div>
+                </div>
+
+                <!-- Khung ảnh/video Chapter 2 -->
+                <div class="md:col-span-5 order-1 md:order-2">
+                    <div class="bg-white p-3.5 pb-6 rounded-2xl shadow-polaroid border border-warmBorder relative polaroid-tilt-left">
+                        <div class="washi-tape"></div>
+                        <div class="slot" data-slot-id="ch2" style="aspect-ratio:4/5" data-src="images/ch2.jpg" data-name="Khoảnh khắc buổi chiều"></div>
+                        <p contenteditable="true" spellcheck="false" class="font-hand text-2xl text-center text-charcoal mt-3 outline-none inline-flex items-center gap-2">
+                            Khám phá thế giới nhỏ của nhau
+                            <img src="figures/art.png"
+                                class="w-6 h-6"
+                                alt="Coffee">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Takeaway Chặng 2 -->
+            <div class="mt-6 bg-white/60 border-l-4 border-terracotta px-5 py-3.5 rounded-r-xl">
+                <p class="font-serif italic text-base sm:text-lg text-charcoal">
+                    <strong>Takeaway:</strong> "I don't just want to remember who you were. I want to know who you are becoming."
+                </p>
+            </div>
+        </article>
+
+        <!-- ------------------------------------------
+             CHAPTER 3 — THE UNSPOKEN (KHOẢNG LẶNG BUỔI CHIỀU)
+        ------------------------------------------- -->
+        <article id="chapter-3" class="scroll-mt-20">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sage bg-sageLight px-3.5 py-1.5 rounded-full">
+                    <i data-lucide="feather" class="w-3.5 h-3.5"></i>
+                    Chapter 03 • Khoảng Lặng
+                </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-charcoal">
+                The Unspoken: <span class="italic font-normal text-sage">Let's make room for what was left unsaid</span>
+            </h2>
+            <p class="text-muted mt-2 text-sm sm:text-base max-w-2xl">
+                Sau khi đã cùng đi chơi và trải nghiệm tự nhiên, hãy dành một góc ngồi yên tĩnh để chia sẻ những điều đôi khi chưa biết cách nói ra.
+            </p>
+
+            <!-- Thẻ câu hỏi gợi mở Chapter 3 -->
+            <div class="bg-sageLight/50 border border-sage/30 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage flex items-center gap-1.5">
+                        <i data-lucide="ear" class="w-4 h-4"></i>
+                        Câu hỏi gợi mở • Chặng 3
+                    </span>
+                    <span id="counter-ch3" class="text-xs text-muted font-mono">1 / 6</span>
+                </div>
+
+                <div class="min-h-[100px] flex items-center">
+                    <p id="prompt-text-ch3" class="font-serif text-2xl sm:text-3xl text-charcoal leading-snug prompt-transition">
+                        "Có điều gì emh từng mong anh nhận ra nhưng đối phương chưa nhận ra không?"
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-4 border-t border-sage/20">
+                    <div class="flex items-center gap-2">
+                        <button onclick="prevPrompt('ch3')" class="text-xs sm:text-sm text-muted hover:text-charcoal flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-white transition">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            Câu trước
+                        </button>
+                        <button onclick="nextPrompt('ch3')" class="text-xs sm:text-sm font-medium bg-sage text-white px-4 py-2 rounded-xl hover:opacity-95 transition flex items-center gap-1.5">
+                            <span>Câu khác</span>
+                            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="answered-list-ch3" class="mt-4 space-y-2 hidden"></div>
+            </div>
+
+            <!-- Takeaway Chặng 3 -->
+            <div class="mt-6 bg-white/60 border-l-4 border-sage px-5 py-3.5 rounded-r-xl">
+                <p class="font-serif italic text-base sm:text-lg text-charcoal">
+                    <strong>Takeaway:</strong> "Sometimes distance grows not because we stop caring, but because we stop seeing what the other person is going through."
+                </p>
+            </div>
+        </article>
+
+        <!-- ------------------------------------------
+             CHAPTER 4 — THE MEANING OF US (BUỔI TỐI ẤM ÁP)
+        ------------------------------------------- -->
+        <article id="chapter-4" class="scroll-mt-20">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-terracotta bg-terracotta/10 px-3.5 py-1.5 rounded-full">
+                    <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+                    Chapter 04 • Buổi Tối Ấm Áp
+                </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-charcoal">
+                The Meaning of Us: <span class="italic font-normal text-terracotta">Help me understand how you feel loved</span>
+            </h2>
+            <p class="text-muted mt-2 text-sm sm:text-base max-w-2xl">
+                Hai người có thể yêu nhau thật lòng nhưng cảm nhận tình yêu theo những cách khác nhau. Chặng này giúp mỗi người diễn đạt điều gì khiến mình cảm thấy được quan tâm, an toàn và trân trọng.
+            </p>
+
+            <!-- BỘ CHỌN TƯƠNG TÁC BỮA TỐI: HÁ CẢO PHÁNH HOẶC MATSUYA -->
+            <div class="mt-8 bg-paper/70 border border-warmBorder rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-terracotta">Điểm dừng Bữa Tối</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-semibold text-charcoal">
+                            Tối nay chiếc bụng đói của tụi mình chọn nơi nào?
+                        </h3>
+                    </div>
+                    <span id="badge-choice-dinner" class="text-xs bg-white px-3 py-1 rounded-full border border-warmBorder text-muted">
+                        Em chọn nhé ♡
+                    </span>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Option A: Há cảo Phánh -->
+                    <div id="card-dinner-a" onclick="selectItineraryOption('dinner', 'a', 'Ăn tối Há cảo Phánh (12 Lô B Chung cư Nguyễn Trãi, Q.5)')" class="cursor-pointer bg-white border-2 border-warmBorder hover:border-terracotta/60 rounded-2xl p-5 transition-all relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-terracotta/10 text-terracotta">Lựa chọn A • Ấm cúng & Đậm vị</span>
+                            <div id="check-dinner-a" class="w-6 h-6 rounded-full border border-warmBorder flex items-center justify-center text-white transition">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-serif text-xl font-semibold text-charcoal">Há cảo Phánh</h4>
+                        <p class="text-xs font-medium text-terracotta mt-1 flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                            12 Lô B Chung cư Nguyễn Trãi, Quận 5
+                        </p>
+                        <div class="slot" data-slot-id="ha-cao-phanh" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/hacao.jpg" data-name="Ảnh Há cảo Phánh"></div>
+                        <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                            Nép mình ở góc chung cư Quận 5 nhộn nhịp, ngồi thưởng thức từng xửng há cảo nóng hổi và tận hưởng sự gần gũi, bình dị bên nhau.
+                        </p>
+                    </div>
+
+                    <!-- Option B: Matsuya -->
+                    <div id="card-dinner-b" onclick="selectItineraryOption('dinner', 'b', 'Ăn tối Matsuya (89-91 Nguyễn Gia Trí, Bình Thạnh)')" class="cursor-pointer bg-white border-2 border-warmBorder hover:border-terracotta/60 rounded-2xl p-5 transition-all relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-sageLight text-sage">Lựa chọn B • Chuẩn Nhật & Thoải mái</span>
+                            <div id="check-dinner-b" class="w-6 h-6 rounded-full border border-warmBorder flex items-center justify-center text-white transition">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-serif text-xl font-semibold text-charcoal">Matsuya</h4>
+                        <p class="text-xs font-medium text-sage mt-1 flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                            89-91 Nguyễn Gia Trí, Bình Thạnh
+                        </p>
+                        <div class="slot" data-slot-id="matsuya" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/matsuya.jpg" data-name="Ảnh Matsuya"></div>
+                        <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                            Không gian ấm cúng, gọn gàng trên con đường Nguyễn Gia Trí quen thuộc, tiện đường di chuyển cho lịch trình buổi tối ở Bình Thạnh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hoạt động: My Definition of Love (5 thẻ tương tác) -->
+            <div class="mt-8">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-serif text-xl sm:text-2xl font-semibold text-charcoal">
+                        Hoạt động nhỏ: "My Definition of Love"
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                    <button type="button" onclick="toggleLoveCard(this)" class="text-left bg-white hover:bg-paper/60 border border-warmBorder rounded-2xl p-4 transition shadow-sm group">
+                        <span class="text-[11px] font-bold text-terracotta uppercase">01 • Loved</span>
+                        <p class="font-serif text-lg font-semibold text-charcoal mt-1">"I feel loved when..."</p>
+                        <p class="text-xs text-muted mt-2">Điều khiến em/anh cảm thấy được yêu thương nhất là khi...</p>
+                    </button>
+
+                    <button type="button" onclick="toggleLoveCard(this)" class="text-left bg-white hover:bg-paper/60 border border-warmBorder rounded-2xl p-4 transition shadow-sm group">
+                        <span class="text-[11px] font-bold text-terracotta uppercase">02 • Closeness</span>
+                        <p class="font-serif text-lg font-semibold text-charcoal mt-1">"I feel close to you when..."</p>
+                        <p class="text-xs text-muted mt-2">Khoảnh khắc em/anh thấy hai đứa gần nhau nhất là...</p>
+                    </button>
+
+                    <button type="button" onclick="toggleLoveCard(this)" class="text-left bg-white hover:bg-paper/60 border border-warmBorder rounded-2xl p-4 transition shadow-sm group">
+                        <span class="text-[11px] font-bold text-terracotta uppercase">03 • Safety</span>
+                        <p class="font-serif text-lg font-semibold text-charcoal mt-1">"I feel safe when..."</p>
+                        <p class="text-xs text-muted mt-2">Khi buồn hoặc mệt, em/anh cần được ôm, lắng nghe hay không gian riêng?</p>
+                    </button>
+
+                    <button type="button" onclick="toggleLoveCard(this)" class="text-left bg-white hover:bg-paper/60 border border-warmBorder rounded-2xl p-4 transition shadow-sm group">
+                        <span class="text-[11px] font-bold text-terracotta uppercase">04 • Wish</span>
+                        <p class="font-serif text-lg font-semibold text-charcoal mt-1">"I wish we could..."</p>
+                        <p class="text-xs text-muted mt-2">Một điều nhỏ em/anh ước hai đứa có thể cùng làm với nhau...</p>
+                    </button>
+
+                    <button type="button" onclick="toggleLoveCard(this)" class="text-left bg-white hover:bg-paper/60 border border-warmBorder rounded-2xl p-4 transition shadow-sm group">
+                        <span class="text-[11px] font-bold text-terracotta uppercase">05 • Little Thing</span>
+                        <p class="font-serif text-lg font-semibold text-charcoal mt-1">"One little thing..."</p>
+                        <p class="text-xs text-muted mt-2">Một hành động nhỏ của người kia mà mình luôn âm thầm trân trọng...</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Khung ảnh/video Chapter 4 + Câu hỏi gợi mở -->
+            <div class="grid md:grid-cols-12 gap-6 items-center mt-8">
+                <div class="md:col-span-5">
+                    <div class="bg-white p-3.5 pb-6 rounded-2xl shadow-polaroid border border-warmBorder relative polaroid-tilt-right">
+                        <div class="washi-tape"></div>
+                        <div class="slot" data-slot-id="ch4" style="aspect-ratio:4/5" data-src="images/ch4.jpg" data-name="Khoảnh khắc bữa tối"></div>
+                        <p contenteditable="true" spellcheck="false" class="font-hand text-2xl text-center text-charcoal mt-3 outline-none">
+                            Bữa tối ngon lành bên người thương 🥟🥢
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 bg-paper/90 border border-warmBorder rounded-2xl p-6 sm:p-8 shadow-card">
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-terracotta flex items-center gap-1.5">
+                            <i data-lucide="message-circle-heart" class="w-4 h-4"></i>
+                            Câu hỏi gợi mở • Chặng 4
+                        </span>
+                        <span id="counter-ch4" class="text-xs text-muted font-mono">1 / 5</span>
+                    </div>
+
+                    <div class="min-h-[110px] flex items-center">
+                        <p id="prompt-text-ch4" class="font-serif text-2xl sm:text-3xl text-charcoal leading-snug prompt-transition">
+                            "Điều gì khiến em cảm thấy mình được yêu thương và ưu tiên nhất?"
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-3 mt-3 border-t border-warmBorder">
+                        <button onclick="prevPrompt('ch4')" class="text-xs sm:text-sm text-muted hover:text-charcoal flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-white transition">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            Câu trước
+                        </button>
+                        <button onclick="nextPrompt('ch4')" class="text-xs sm:text-sm font-medium bg-terracotta text-white px-4 py-2.5 rounded-xl hover:bg-terracottaDark transition flex items-center gap-1.5 shadow-sm">
+                            <span>Câu khác</span>
+                            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div id="answered-list-ch4" class="mt-4 space-y-2 hidden"></div>
+                </div>
+            </div>
+
+            <!-- Takeaway Chặng 4 -->
+            <div class="mt-6 bg-white/60 border-l-4 border-terracotta px-5 py-3.5 rounded-r-xl">
+                <p class="font-serif italic text-base sm:text-lg text-charcoal">
+                    <strong>Takeaway:</strong> "Love is not only about what I intend to give. It is also about understanding how you receive it."
+                </p>
+            </div>
+        </article>
+
+        <!-- ------------------------------------------
+             CHAPTER 5 — THE NEXT CHAPTER (ĐÊM LƯU GIỮ CẢM XÚC)
+        ------------------------------------------- -->
+        <article id="chapter-5" class="scroll-mt-20">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-terracotta bg-terracotta/10 px-3.5 py-1.5 rounded-full">
+                    <i data-lucide="moon-star" class="w-3.5 h-3.5"></i>
+                    Chapter 05 • Đêm Lưu Giữ Cảm Xúc
+                </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-charcoal">
+                The Next Chapter: <span class="italic font-normal text-terracotta">What would we like to create next?</span>
+            </h2>
+            <p class="text-muted mt-2 text-sm sm:text-base max-w-2xl">
+                Hãy tận hưởng phần cuối của buổi tối và lưu giữ lại những khoảnh khắc chân thật nhất sau hành trình Find "WE".
+            </p>
+
+            <!-- BỘ CHỌN TƯƠNG TÁC CUỐI NGÀY: DẠO BỘ LANDMARK HOẶC CHỤP PHOTOBOOTH PARISBOOTH -->
+            <div class="mt-8 bg-paper/70 border border-warmBorder rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-terracotta">Trạm kết thúc hành trình</span>
+                        <h3 class="font-serif text-xl sm:text-2xl font-semibold text-charcoal">
+                            Khép lại buổi tối hôm nay bằng kỷ niệm nào? (Hoặc cả hai!)
+                        </h3>
+                    </div>
+                    <span id="badge-choice-night" class="text-xs bg-white px-3 py-1 rounded-full border border-warmBorder text-muted">
+                        Em chọn nhé ♡
+                    </span>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Option A: Đi bộ Landmark -->
+                    <div id="card-night-a" onclick="selectItineraryOption('night', 'a', 'Đi bộ hóng gió tại Công viên Landmark 81')" class="cursor-pointer bg-white border-2 border-warmBorder hover:border-terracotta/60 rounded-2xl p-5 transition-all relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-sageLight text-sage">Lựa chọn A • Gió mát & Trò chuyện</span>
+                            <div id="check-night-a" class="w-6 h-6 rounded-full border border-warmBorder flex items-center justify-center text-white transition">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-serif text-xl font-semibold text-charcoal">Đi bộ tại Công viên Landmark</h4>
+                        <p class="text-xs font-medium text-sage mt-1 flex items-center gap-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                            Vinhomes Central Park, Bình Thạnh
+                        </p>
+                        <div class="slot" data-slot-id="landmark" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/landmark.jpg" data-name="Ảnh Landmark 81"></div>
+                        <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                            Thong thả tản bộ dưới ánh đèn thành phố bên bờ sông mát rượi, cùng chia sẻ những điều nhỏ bé mà hai đứa muốn thử trong thời gian tới.
+                        </p>
+                    </div>
+
+                    <!-- Option B: Photobooth tại Parisbooth -->
+                    <div id="card-night-b" onclick="selectItineraryOption('night', 'b', 'Chụp Photobooth lưu giữ cảm xúc tại Parisbooth')" class="cursor-pointer bg-white border-2 border-warmBorder hover:border-terracotta/60 rounded-2xl p-5 transition-all relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-terracotta/10 text-terracotta">Lựa chọn B • Lưu giữ khoảnh khắc</span>
+                            <div id="check-night-b" class="w-6 h-6 rounded-full border border-warmBorder flex items-center justify-center text-white transition">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-serif text-xl font-semibold text-charcoal">Chụp Photobooth tại Parisbooth</h4>
+                        <p class="text-xs font-medium text-terracotta mt-1 flex items-center gap-1">
+                            <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                            Parisbooth Photobooth
+                        </p>
+                        <div class="slot" data-slot-id="parisbooth-place" style="aspect-ratio:16/10;margin-top:.8rem" data-src="figures/paris-booth.jpg" data-name="Ảnh Parisbooth"></div>
+                        <p class="text-sm text-muted mt-2.5 leading-relaxed">
+                            Cùng bước vào buồng chụp ảnh lấy liền, ghi lại những nụ cười và biểu cảm tự nhiên nhất để khép lại trọn vẹn hành trình Find "WE".
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KHUNG PHOTOBOOTH ĐẶC BIỆT (PARISBOOTH FILM STRIP) + CÂU HỎI CHẶNG 5 -->
+            <div class="grid md:grid-cols-12 gap-6 items-center mt-8">
+                <!-- Bộ câu hỏi Chapter 5 -->
+                <div class="md:col-span-7 bg-paper/90 border border-warmBorder rounded-2xl p-6 sm:p-8 shadow-card">
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-terracotta flex items-center gap-1.5">
+                            <i data-lucide="message-circle-heart" class="w-4 h-4"></i>
+                            Câu hỏi gợi mở • Chặng 5
+                        </span>
+                        <span id="counter-ch5" class="text-xs text-muted font-mono">1 / 5</span>
+                    </div>
+
+                    <div class="min-h-[110px] flex items-center">
+                        <p id="prompt-text-ch5" class="font-serif text-2xl sm:text-3xl text-charcoal leading-snug prompt-transition">
+                            "Nếu tiếp tục cùng nhau, em/anh muốn chúng ta có thêm những trải nghiệm hay thói quen nhỏ nào?"
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-3 mt-3 border-t border-warmBorder">
+                        <button onclick="prevPrompt('ch5')" class="text-xs sm:text-sm text-muted hover:text-charcoal flex items-center gap-1 px-3 py-2 rounded-xl hover:bg-white transition">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            Câu trước
+                        </button>
+                        <button onclick="nextPrompt('ch5')" class="text-xs sm:text-sm font-medium bg-terracotta text-white px-4 py-2.5 rounded-xl hover:bg-terracottaDark transition flex items-center gap-1.5 shadow-sm">
+                            <span>Câu khác</span>
+                            <i data-lucide="shuffle" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div id="answered-list-ch5" class="mt-4 space-y-2 hidden"></div>
+                </div>
+
+                <!-- Khung Photobooth Parisbooth / Landmark -->
+                <div class="md:col-span-5">
+                    <div class="bg-charcoal text-cream p-4 pb-6 rounded-2xl shadow-polaroid border border-charcoal relative polaroid-tilt-left">
+                        <div class="flex items-center justify-between text-[10px] tracking-widest uppercase text-cream/60 mb-2.5 font-mono">
+                            <span>PARISBOOTH • LANDMARK</span>
+                            <span>FIND "WE" FILM</span>
+                        </div>
+
+                        <div class="slot" data-slot-id="ch5" style="aspect-ratio:3/4" data-src="images/ch5.jpg" data-name="Dải ảnh Parisbooth"></div>
+
+                        <div class="mt-4 text-center">
+                            <p contenteditable="true" spellcheck="false" class="font-hand text-2xl text-cream outline-none">
+                                Parisbooth & Landmark — Kỷ niệm Find "WE" ✨📸
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Takeaway Chặng 5 -->
+            <div class="mt-6 bg-white/60 border-l-4 border-terracotta px-5 py-3.5 rounded-r-xl">
+                <p class="font-serif italic text-base sm:text-lg text-charcoal">
+                    <strong>Takeaway:</strong> "The future of 'WE' should be something both of us want to create, not something one person has to convince the other to choose."
+                </p>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- ==========================================
+         4. MEMORY MOMENTS — TẤM VÉ HÀNH TRÌNH CỦA HAI ĐỨA
+    =========================================== -->
+    <section id="memories" class="py-12 px-4 scroll-mt-20">
+        <div class="max-w-3xl mx-auto ticket">
+            <div class="text-center mb-5">
+                <span class="text-xs font-bold uppercase tracking-widest text-terracotta">Our Selected Route</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-charcoal mt-1">Hành trình của hai đứa</h2>
+                <p class="text-xs text-muted mt-1">Chạm vào từng mốc bên dưới nếu em muốn quay lại chỉnh sửa lựa chọn hoặc thêm ảnh ở chặng đó nhé</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2.5 text-sm">
+                <a href="#chapter-1" class="chip hover:border-terracotta transition inline-flex items-center gap-2">
+                    <img src="figures/morning.png" class="w-5 h-5 object-contain" alt="Morning">
+                    Sáng: 4A/33 Nguyễn Văn Thương & Cú Trên Cây
+                </a>
+
+                <a href="#chapter-2" id="summary-afternoon" class="chip hover:border-terracotta transition inline-flex items-center gap-2">
+                    <img src="figures/afternoon.png" class="w-5 h-5 object-contain" alt="Afternoon">
+                    Trưa & Chiều: Mì Blue Dragon + (Chưa chọn chiều)
+                </a>
+
+                <a href="#chapter-4" id="summary-dinner" class="chip hover:border-terracotta transition inline-flex items-center gap-2">
+                    <img src="figures/evening.png" class="w-5 h-5 object-contain" alt="Dinner">
+                    Tối: (Chưa chọn quán tối)
+                </a>
+
+                <a href="#chapter-5" id="summary-night" class="chip hover:border-terracotta transition inline-flex items-center gap-2">
+                    <img src="figures/night.png" class="w-5 h-5 object-contain" alt="Night">
+                    Đêm: (Chưa chọn hoạt động đêm)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         5. CLOSING — WE ARE STILL WRITING
+    =========================================== -->
+    <section id="closing" class="py-16 px-4 max-w-3xl mx-auto text-center scroll-mt-20">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-paper border border-warmBorder text-sage text-xs tracking-widest uppercase mb-6">
+            <i data-lucide="book-heart" class="w-3.5 h-3.5"></i>
+            <span>Closing: We Are Still Writing</span>
+        </div>
+
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-charcoal mb-8">
+            The next chapter is ours to choose.
+        </h2>
+
+        <!-- Lời kết gợi ý -->
+        <div class="bg-white border border-warmBorder rounded-3xl p-6 sm:p-10 text-left space-y-4 text-sm sm:text-base text-muted leading-relaxed shadow-card mb-10">
+            <p>
+                Hôm nay chúng ta đã đi qua một vài nơi, làm một vài điều ...
+            </p>
+
+            <p>
+                TO BE CONTINUE..
+            </p>
+
+            <!-- <p>
+                Có những điều vẫn còn giống ngày đầu. Có những điều đã thay đổi. Và có lẽ cũng có những điều mà trước đây chúng ta chưa từng thật sự hiểu về nhau.
+            </p>
+            <p>
+                Anh không mong hôm nay có thể giải quyết tất cả mọi chuyện. Anh chỉ hy vọng chúng ta đã có cơ hội nhìn nhau rõ hơn một chút, không chỉ nhìn vào những gì đã xảy ra, mà còn nhìn vào con người mà mỗi người đang trở thành.
+            </p>
+            <p class="text-charcoal font-medium">
+                Chúng ta không nhất thiết phải quay lại phiên bản cũ của mình. Nếu cả hai cùng muốn, chúng ta có thể tìm hiểu cách xây dựng một phiên bản mới của "WE", bằng sự thấu hiểu và lựa chọn từ cả hai phía.
+            </p> -->
+        </div>
+
+        <!-- Khung Gửi toàn bộ câu trả lời & lựa chọn về Email -->
+        <div class="send-card text-left mb-12">
+            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">Gửi lại cho anh nhé</h3>
+            <p class="text-sm text-muted mt-1 mb-4">
+                Những câu em đã trả lời và nơi em chọn sẽ bay thẳng vào hộp thư của anh.
+            </p>
+            <textarea id="closing-reflection" rows="4" class="ans" placeholder="Một điều nhỏ em muốn anh biết…" oninput="saveAll()"></textarea>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 mt-5">
+                <div class="space-y-0.5">
+                    <span id="answer-count" class="block text-xs font-medium text-charcoal"></span>
+                    <span id="photo-count" class="block text-xs text-muted"></span>
+                </div>
+                <button id="send-btn" onclick="sendAnswers()" class="cta">
+                    <span>Gửi cho anh</span>
+                    <span>💌</span>
+                </button>
+            </div>
+            <p id="send-status" class="text-sm font-medium text-terracottaDark mt-3 min-h-[1.25rem]"></p>
+        </div>
+
+        <!-- Câu kết của hành trình -->
+        <div class="py-6">
+            <p class="font-serif italic text-2xl sm:text-3xl text-charcoal max-w-xl mx-auto leading-normal">
+                "We don't have to go back. We can choose what to build next, together, if we both want to."
+            </p>
+            <div class="mt-6 flex items-center justify-center gap-3 text-terracotta/60">
+                <span class="w-12 h-px bg-terracotta/30"></span>
+                <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+                <span class="w-12 h-px bg-terracotta/30"></span>
+            </div>
+            <p class="text-xs text-muted mt-4">
+                Designed with care for our day in Saigon
+            </p>
+        </div>
+    </section>
+
+    <!-- Input file dùng chung để tải ảnh lên bất kỳ khung .slot nào -->
+    <input type="file" id="global-slot-file-input" accept="image/*" class="hidden">
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC (TƯƠNG TÁC, UPLOAD ẢNH & GỬI MAIL)
+    =========================================== -->
+    <script>
+        // Khởi tạo bộ icon Lucide
+        lucide.createIcons();
+
+        // ================= CẤU HÌNH NHẬN MAIL & NHẠC (CHỈ CẦN SỬA Ở ĐÂY) =================
+        // Gửi mail: vào https://web3forms.com, nhập email của bạn để nhận "Access Key", dán vào web3formsKey.
+        // ownerEmail: điền email của bạn để dùng làm dự phòng mở ứng dụng mail khi chưa có key.
+        const CONFIG = {
+            web3formsKey: "",     // <-- Dán Access Key của Web3Forms vào đây
+            ownerEmail: "trangiahien5h2005@gmail.com"        // <-- Điền email của bạn vào đây (VD: "anhyeuem@gmail.com")
+        };
+
+        // Danh sách nhạc nền
+        const PLAYLIST = [
+            { title: "Bài hát của hai đứa", artist: "Journey to Find WE", src: "music/bai-hat-1.mp3" }
+        ];
+        // =================================================================================
+
+        const chapterPrompts = {
+            ch1: [
+                "Ấn tượng đầu tiên của em về anh là gì?",
+                "Ngày mới gặp nhau, em đã chú ý đến điều đặc biệt gì ở đối phương?",
+                "Khoảnh khắc nào khiến chúng ta bắt đầu nhận ra mình thích nhau?",
+                "Điều gì ở đối phương từng khiến mình tò mò và muốn tìm hiểu nhiều hơn?",
+                "Có kỷ niệm đầu tiên nào của hai đứa mà đến giờ nghĩ lại vẫn thấy tủm tỉm cười không?"
+            ],
+            ch2: [
+                "Dạo gần đây có điều gì khiến em cảm thấy hào hứng nhất?",
+                "Có sở thích hay bộ môn nào em đã muốn thử từ lâu mà chưa có dịp không?",
+                "Gần đây trong cuộc sống, em đang quan tâm hoặc suy nghĩ nhiều về điều gì?",
+                "Có điều gì mới mẻ về em ở hiện tại mà người kia chưa thực sự biết không?",
+                "Nếu có một ngày hoàn toàn tự do dành cho điều mình thích, em muốn làm gì?",
+                "Có trải nghiệm mới nào mà em muốn hai đứa cùng thử một lần?"
+            ],
+            ch3: [
+                "Có điều gì em từng mong người kia nhận ra nhưng đối phương chưa nhận ra không?",
+                "Có lúc nào em cảm thấy hơi cô đơn dù chúng ta vẫn đang ở cạnh nhau không?",
+                "Có khoảnh khắc nào khiến mình cảm thấy hai đứa không còn kết nối tự nhiên như trước?",
+                "Những lúc một người rất bận rộn, người còn lại đã trải qua khoảng thời gian đó thế nào?",
+                "Có điều gì mình từng muốn chia sẻ nhưng lại sợ người kia buồn hoặc hiểu lầm?",
+                "Có điều gì em đã âm thầm cố gắng nhưng người kia có thể chưa cảm nhận được?"
+            ],
+            ch4: [
+                "Điều gì khiến em cảm thấy mình được yêu thương và ưu tiên nhất?",
+                "Một buổi hẹn hò lý tưởng và thoải mái nhất với em trông như thế nào?",
+                "Em mong anh chủ động hơn ở những điều nhỏ bé nào?",
+                "Khi buồn hoặc mệt mỏi, em muốn được lắng nghe, được ôm, được giúp đỡ hay có không gian riêng?",
+                "Có cách thể hiện tình cảm nào người kia từng làm mà mình rất trân trọng nhưng chưa kịp nói ra?"
+            ],
+            ch5: [
+                "Nếu tiếp tục cùng nhau, em muốn chúng ta có thêm những trải nghiệm hay thói quen nhỏ nào?",
+                "Có nơi nào hoặc hoạt động nào em muốn hai đứa cùng thử trong thời gian tới?",
+                "Chúng ta có thể dành thời gian chất lượng (không bị điện thoại hay công việc làm phiền) cho nhau thế nào?",
+                "Một điều nhỏ thực tế mà mỗi đứa muốn bắt đầu làm cho mối quan hệ là gì?",
+                "Có điều đẹp đẽ nào từ những ngày đầu tiên mà tụi mình muốn giữ lại cho chặng tiếp theo?"
+            ]
+        };
+
+        const promptIndices = { ch1: 0, ch2: 0, ch3: 0, ch4: 0, ch5: 0 };
+        const answers = {};
+        const uploadedPhotos = {}; // Lưu DataURL ảnh người dùng tải lên theo từng slot
+        window.choices = window.choices || {};
+
+        let activeSlotElement = null;
+
+        const LS = {
+            get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+            set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} }
+        };
+        const $ = id => document.getElementById(id);
+
+        // Chuyển trang câu hỏi gợi mở
+        function updatePromptDisplay(chapterKey) {
+            const textEl = $(`prompt-text-${chapterKey}`);
+            const counterEl = $(`counter-${chapterKey}`);
+            const list = chapterPrompts[chapterKey];
+            const idx = promptIndices[chapterKey];
+
+            textEl.classList.add('prompt-fade-out');
+            setTimeout(() => {
+                textEl.textContent = `"${list[idx]}"`;
+                counterEl.textContent = `${idx + 1} / ${list.length}`;
+                textEl.classList.remove('prompt-fade-out');
+                const ta = $('ans-' + chapterKey);
+                if (ta) ta.value = answers[chapterKey + '-' + idx] || '';
+            }, 180);
+        }
+
+        function nextPrompt(chapterKey) {
+            const list = chapterPrompts[chapterKey];
+            promptIndices[chapterKey] = (promptIndices[chapterKey] + 1) % list.length;
+            updatePromptDisplay(chapterKey);
+        }
+
+        function prevPrompt(chapterKey) {
+            const list = chapterPrompts[chapterKey];
+            promptIndices[chapterKey] = (promptIndices[chapterKey] - 1 + list.length) % list.length;
+            updatePromptDisplay(chapterKey);
+        }
+
+        function toggleLoveCard(btn) {
+            btn.classList.toggle('ring-2');
+            btn.classList.toggle('ring-terracotta');
+            btn.classList.toggle('bg-paper');
+        }
+
+        // Xử lý chọn địa điểm Chiều, Tối, Đêm & đồng bộ cả ở #memories lẫn #closing
+        function selectItineraryOption(period, optionKey, labelText) {
+            const options = ['a', 'b'];
+            options.forEach(opt => {
+                const card = $(`card-${period}-${opt}`);
+                const check = $(`check-${period}-${opt}`);
+                if (!card || !check) return;
+                if (opt === optionKey) {
+                    card.classList.add('border-terracotta', 'bg-terracotta/5', 'shadow-md');
+                    card.classList.remove('border-warmBorder', 'bg-white');
+                    check.classList.add('bg-terracotta', 'border-terracotta');
+                    check.classList.remove('border-warmBorder');
+                } else {
+                    card.classList.remove('border-terracotta', 'bg-terracotta/5', 'shadow-md');
+                    card.classList.add('border-warmBorder', 'bg-white');
+                    check.classList.remove('bg-terracotta', 'border-terracotta');
+                    check.classList.add('border-warmBorder');
+                }
+            });
+
+            const badge = $(`badge-choice-${period}`);
+            if (badge) {
+                badge.textContent = `✓ Đã chọn: ${labelText}`;
+                badge.classList.add('bg-terracotta', 'text-white', 'border-terracotta');
+                badge.classList.remove('bg-white', 'text-muted');
+            }
+
+            // Đồng bộ hiển thị ở cả phần #memories và phần #closing cuối trang
+            const textMap = {
+                afternoon: `☀️ Trưa & Chiều: Mì Bảo Bối + ${labelText}`,
+                dinner: `🍜 Tối: ${labelText}`,
+                night: `🌙 Đêm: ${labelText}`
+            };
+
+            if (textMap[period]) {
+                const memChip = $(`summary-${period}`);
+                const closeChip = $(`closing-summary-${period}`);
+                if (memChip) memChip.textContent = textMap[period];
+                if (closeChip) closeChip.textContent = textMap[period];
+            }
+
+            try {
+                (window.choices = window.choices || {})[period] = labelText;
+                LS.set(`find_we_choice_${period}`, JSON.stringify({ optionKey, labelText }));
+            } catch (e) {}
+        }
+
+        // ================= TẢI ẢNH LÊN TỪNG KHUNG .SLOT =================
+        function renderSlotContent(el, imgSrc, labelName) {
+            el.innerHTML = '';
+            if (imgSrc) {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = labelName;
+                el.appendChild(img);
+
+                const changeBtn = document.createElement('button');
+                changeBtn.type = 'button';
+                changeBtn.className = 'slot-upload-btn';
+                changeBtn.innerHTML = `<span>📷 Đổi ảnh</span>`;
+                el.appendChild(changeBtn);
+            } else {
+                el.innerHTML = `
+                    <div class="slot-empty">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                        <span>${labelName}</span>
+                        <span class="text-xs font-sans font-medium bg-white/90 text-terracotta px-2.5 py-1 rounded-full border border-warmBorder shadow-sm mt-1">
+                            + Chạm để thêm ảnh
+                        </span>
+                    </div>
+                `;
+            }
+        }
+
+        // Nén ảnh nhẹ nhàng để lưu được nhiều ảnh vào bộ nhớ trình duyệt
+        function compressImageFile(file, maxWidth = 1100, quality = 0.82) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const scale = Math.min(1, maxWidth / img.width);
+                        const canvas = document.createElement('canvas');
+                        canvas.width = Math.round(img.width * scale);
+                        canvas.height = Math.round(img.height * scale);
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function initSlots() {
+            // Khôi phục ảnh đã tải lên từ localStorage
+            try {
+                Object.assign(uploadedPhotos, JSON.parse(LS.get('find_we_photos') || '{}'));
+            } catch (e) {}
+
+            const fileInput = $('global-slot-file-input');
+
+            document.querySelectorAll('.slot').forEach((el, idx) => {
+                const slotId = el.dataset.slotId || `slot-${idx}`;
+                el.dataset.slotId = slotId;
+                const name = el.dataset.name || 'Thêm ảnh kỷ niệm';
+
+                // Sự kiện chạm vào khung .slot để tải ảnh từ máy/điện thoại
+                el.addEventListener('click', e => {
+                    e.stopPropagation(); // Không kích hoạt nhầm thẻ chọn A/B bên ngoài
+                    activeSlotElement = el;
+                    fileInput.value = '';
+                    fileInput.click();
+                });
+
+                // Nếu người dùng đã tải ảnh lên slot này trước đó
+                if (uploadedPhotos[slotId]) {
+                    renderSlotContent(el, uploadedPhotos[slotId], name);
+                    return;
+                }
+
+                // Hiển thị khung trống ban đầu, đồng thời thử nạp ảnh mặc định trong thư mục images/ nếu có
+                renderSlotContent(el, null, name);
+                if (el.dataset.src) {
+                    const testImg = new Image();
+                    testImg.onload = () => {
+                        if (!uploadedPhotos[slotId]) {
+                            renderSlotContent(el, el.dataset.src, name);
+                        }
+                    };
+                    testImg.src = el.dataset.src;
+                }
+            });
+
+            // Khi người dùng chọn file ảnh xong
+            fileInput.addEventListener('change', async e => {
+                const file = e.target.files && e.target.files[0];
+                if (!file || !activeSlotElement) return;
+
+                const slotId = activeSlotElement.dataset.slotId;
+                const name = activeSlotElement.dataset.name || 'Ảnh kỷ niệm';
+
+                try {
+                    const dataUrl = await compressImageFile(file);
+                    uploadedPhotos[slotId] = dataUrl;
+                    renderSlotContent(activeSlotElement, dataUrl, name);
+                    LS.set('find_we_photos', JSON.stringify(uploadedPhotos));
+                    updateCounters();
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+
+            updateCounters();
+        }
+
+        // Hiển thị danh sách các câu đã trả lời bên dưới mỗi chặng để khi chụp Screenshot thấy đầy đủ
+        function renderAnsweredLists() {
+            Object.keys(chapterPrompts).forEach(k => {
+                const container = $(`answered-list-${k}`);
+                if (!container) return;
+
+                const keys = Object.keys(answers)
+                    .filter(a => a.startsWith(k + '-') && answers[a] && answers[a].trim())
+                    .sort();
+
+                if (!keys.length) {
+                    container.classList.add('hidden');
+                    container.innerHTML = '';
+                    return;
+                }
+
+                container.classList.remove('hidden');
+                container.innerHTML = keys.map(aKey => {
+                    const qIdx = +aKey.split('-')[1];
+                    const qText = chapterPrompts[k][qIdx];
+                    const aText = answers[aKey].trim();
+                    return `
+                        <div class="bg-white/85 border border-warmBorder rounded-xl p-3 text-left shadow-sm">
+                            <p class="text-xs font-medium text-muted">💬 ${qText}</p>
+                            <p class="font-hand text-xl text-charcoal mt-0.5">${aText.replace(/</g, '&lt;')}</p>
+                        </div>
+                    `;
+                }).join('');
+            });
+        }
+
+        function updateCounters() {
+            const ansCount = Object.values(answers).filter(v => v && v.trim()).length;
+            const photoCount = Object.keys(uploadedPhotos).length;
+            $('answer-count').textContent = ansCount ? `✍️ Em đã trả lời ${ansCount} câu hỏi` : ' Em có thể trả lời các câu hỏi gợi mở ở từng chặng nhé';
+            $('photo-count').textContent = photoCount ? `📷 Đã thêm ${photoCount} bức ảnh kỷ niệm vào trang` : ' Chạm vào bất kỳ khung ảnh nào để tải ảnh lên';
+        }
+
+        function saveAll() {
+            LS.set('find_we_answers', JSON.stringify(answers));
+            LS.set('find_we_note', $('closing-reflection').value);
+            renderAnsweredLists();
+            updateCounters();
+        }
+
+        function initAnswers() {
+            try { Object.assign(answers, JSON.parse(LS.get('find_we_answers') || '{}')); } catch (e) {}
+            Object.keys(chapterPrompts).forEach(k => {
+                const p = $('prompt-text-' + k);
+                if (!p) return;
+                const ta = document.createElement('textarea');
+                ta.id = 'ans-' + k;
+                ta.rows = 3;
+                ta.className = 'ans';
+                ta.placeholder = 'Viết câu trả lời của em ở đây…';
+                ta.oninput = () => {
+                    answers[k + '-' + promptIndices[k]] = ta.value;
+                    saveAll();
+                };
+                p.parentElement.after(ta);
+                ta.value = answers[k + '-0'] || '';
+            });
+            const note = LS.get('find_we_note');
+            if (note) $('closing-reflection').value = note;
+
+            ['afternoon', 'dinner', 'night'].forEach(p => {
+                try {
+                    const r = JSON.parse(LS.get('find_we_choice_' + p) || 'null');
+                    if (r) selectItineraryOption(p, r.optionKey, r.labelText);
+                } catch (e) {}
+            });
+            saveAll();
+        }
+
+        function buildMessage() {
+            const T = {
+                ch1: 'Chặng 1 · The Beginning',
+                ch2: 'Chặng 2 · The Little Things',
+                ch3: 'Chặng 3 · The Unspoken',
+                ch4: 'Chặng 4 · The Meaning of Us',
+                ch5: 'Chặng 5 · The Next Chapter'
+            };
+            const N = { afternoon: 'Chiều', dinner: 'Tối', night: 'Đêm' }, L = [];
+            const c = Object.entries(choices).map(([k, v]) => '• ' + N[k] + ': ' + v);
+            if (c.length) L.push('📍 CÁC LỰA CHỌN CỦA EM', '', ...c, '');
+            Object.keys(T).forEach(k => {
+                const ks = Object.keys(answers).filter(a => a.startsWith(k + '-') && answers[a].trim()).sort();
+                if (!ks.length) return;
+                L.push('💬 ' + T[k].toUpperCase(), '');
+                ks.forEach(a => L.push('Hỏi: ' + chapterPrompts[k][+a.split('-')[1]], 'Đáp: ' + answers[a].trim(), ''));
+            });
+            const note = $('closing-reflection').value.trim();
+            if (note) L.push('✍️ ĐIỀU EM MUỐN ANH BIẾT', '', note);
+            return L.join('\n');
+        }
+
+        // ================= GỬI CÂU TRẢ LỜI & LỰA CHỌN QUA EMAIL =================
+        async function sendAnswers() {
+            const msg = buildMessage();
+            const st = $('send-status');
+            const btn = $('send-btn');
+            const subject = '💌 Câu trả lời từ Journey to Find "WE"';
+
+            if (!msg.trim()) {
+                st.textContent = 'Em trả lời ít nhất một câu hoặc chọn một nơi nhé ♡';
+                return;
+            }
+
+            btn.disabled = true;
+            st.textContent = 'Đang gửi…';
+
+            try {
+                if (CONFIG.web3formsKey) {
+                    const r = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                        body: JSON.stringify({
+                            access_key: CONFIG.web3formsKey,
+                            subject,
+                            from_name: 'Journey to Find WE',
+                            message: msg
+                        })
+                    });
+                    const j = await r.json();
+                    if (!j.success) throw new Error(j.message);
+                } else if (CONFIG.ownerEmail) {
+                    location.href = 'mailto:' + CONFIG.ownerEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(msg);
+                } else {
+                    throw new Error('Chưa cấu hình email nhận');
+                }
+                st.textContent = 'Đã gửi rồi nè 💌 Cảm ơn em nhiều lắm!';
+                burst();
+            } catch (e) {
+                console.error(e);
+                st.textContent = 'Chưa gửi được, em thử lại giúp anh nhé.';
+                btn.disabled = false;
+            }
+        }
+
+        // ================= ĐẦU ĐĨA THAN PHÁT NHẠC & HIỆU ỨNG =================
+        const audio = new Audio();
+        let ti = 0;
+        function loadTrack(i) {
+            ti = (i + PLAYLIST.length) % PLAYLIST.length;
+            const t = PLAYLIST[ti];
+            audio.src = t.src;
+            $('mp-title').textContent = t.title;
+            $('mp-artist').textContent = t.artist;
+        }
+        function toggleMusic() { audio.paused ? audio.play().catch(() => {}) : audio.pause(); }
+        function step(d) {
+            const was = !audio.paused;
+            loadTrack(ti + d);
+            if (was) audio.play().catch(() => {});
+        }
+        audio.onplay = () => { $('mplayer').classList.add('playing'); $('mp-pp').textContent = '❚❚'; };
+        audio.onpause = () => { $('mplayer').classList.remove('playing'); $('mp-pp').textContent = '▶'; };
+        audio.onended = () => { step(1); audio.play().catch(() => {}); };
+        audio.ontimeupdate = () => { $('mp-prog').style.width = (audio.duration ? audio.currentTime / audio.duration * 100 : 0) + '%'; };
+
+        function burst() {
+            const e = ['💗', '✨', '🌸', '💌', '🧡'];
+            for (let i = 0; i < 28; i++) {
+                const s = document.createElement('span');
+                s.className = 'confetti';
+                s.textContent = e[i % 5];
+                s.style.cssText = 'left:' + Math.random() * 100 + 'vw;animation-delay:' + Math.random() * .6 + 's;font-size:' + (14 + Math.random() * 16) + 'px';
+                document.body.appendChild(s);
+                setTimeout(() => s.remove(), 4000);
+            }
+        }
+
+        function acceptInvite() {
+            if (audio.paused) audio.play().catch(() => {});
+            burst();
+            setTimeout(() => $('journey-map').scrollIntoView({ behavior: 'smooth' }), 700);
+        }
+
+        function initFx() {
+            const P = document.createElement('div');
+            P.className = 'petals';
+            for (let i = 0; i < 10; i++) {
+                const s = document.createElement('span');
+                s.className = 'petal';
+                s.textContent = ['🌸', '💗', '✨'][i % 3];
+                s.style.cssText = 'left:' + Math.random() * 100 + '%;font-size:' + (12 + Math.random() * 10) + 'px;animation-duration:' + (14 + Math.random() * 10) + 's;animation-delay:-' + Math.random() * 20 + 's';
+                P.appendChild(s);
+            }
+            document.body.appendChild(P);
+
+            const io = new IntersectionObserver(es => es.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            }), { threshold: .06 });
+            document.querySelectorAll('article,#memories,#closing').forEach(el => {
+                el.classList.add('rv');
+                io.observe(el);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initSlots();
+            initAnswers();
+            loadTrack(0);
+            initFx();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
