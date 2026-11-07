@@ -1435,16 +1435,16 @@
 
             // Đồng bộ hiển thị ở cả phần #memories và phần #closing cuối trang
             const textMap = {
-                afternoon: `☀️ Trưa & Chiều: Mì Bảo Bối + ${labelText}`,
-                dinner: `🍜 Tối: ${labelText}`,
-                night: `🌙 Đêm: ${labelText}`
+                afternoon: `<img src="figures/afternoon.png" class="w-5 h-5 inline-block align-middle object-contain" alt=""> Trưa & Chiều: Mì Bảo Bối + ${labelText}`,
+                dinner: `<img src="figures/evening.png" class="w-5 h-5 inline-block align-middle object-contain" alt=""> Tối: ${labelText}`,
+                night: `<img src="figures/night.png" class="w-5 h-5 inline-block align-middle object-contain" alt=""> Đêm: ${labelText}`
             };
 
             if (textMap[period]) {
                 const memChip = $(`summary-${period}`);
                 const closeChip = $(`closing-summary-${period}`);
-                if (memChip) memChip.textContent = textMap[period];
-                if (closeChip) closeChip.textContent = textMap[period];
+                if (memChip) memChip.innerHTML = textMap[period];
+                if (closeChip) closeChip.innerHTML = textMap[period];
             }
 
             try {
